@@ -41,7 +41,7 @@
                     </p>
                     <p class="mb-0">
                         <strong>
-                        <a href="{{item.number}}" class="text-secondary">{{item.name}}</a>
+                            <router-link :to="{path:'/products/' + item.number }" class="text-secondary">{{item.name}}</router-link>
                         </strong>
                     </p>
                     <p class="mb-1">
