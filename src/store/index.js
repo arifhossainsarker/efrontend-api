@@ -29,6 +29,10 @@ const store = createStore({
 
         addToCart(state, payload){
             state.cart.push(payload)
+        },
+
+        revomeCart(state, payload){
+            state.cart.splice(payload, 1)
         }
     }
 });

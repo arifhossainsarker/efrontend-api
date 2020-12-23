@@ -22,7 +22,7 @@
         
       </ul>
       <ul class="navbar-right">
-        <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>
+        <li v-on:click="hoverCart = !hoverCart"><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">{{products.length}}</span></a></li>
       </ul> <!--end navbar-right -->
       <form class="my-2 form-inline my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -30,21 +30,22 @@
       </form>
     </div>
   </nav>
-  <div class="container">
+  <div v-if="hoverCart" class="container">
     <div class="shopping-cart">
     <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{products.length}}</span>
       <div class="shopping-cart-total">
         <span class="lighter-text">Total:</span>
-        <span class="main-color-text">$2,229.97</span>
+        <span class="main-color-text">${{Totalprice}}</span>
       </div>
     </div> <!--end shopping-cart-header -->
-
+    
     <ul class="shopping-cart-items">
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-        <span class="item-name">Sony DSC-RX100M III</span>
-        <span class="item-price">$849.99</span>
+      <li class="clearfix" v-for="(product, index) in products" :key="index">
+        <img :src="product.photo" alt="item1" style="height:30px; weight:30px;"/>
+        <button type="button" class="remove-btn" @click="removeItem(index)">X</button>
+        <span class="item-name">{{ product.name }}</span>
+        <span class="item-price">${{ product.TotalPrice }}</span>
         <span class="item-quantity">Quantity: 01</span>
       </li>
     </ul>
@@ -57,19 +58,49 @@
 <script>
 
 export default {
+  data(){
+    return{
+      hoverCart: false
+    }
+  },
   computed:{
-    
+    products(){
+      return this.$store.getters.getCart
+    },
+
+    Totalprice(){
+      var total = 0
+      this.products.forEach(product => {
+        total += parseFloat(product.TotalPrice)
+      });
+      return total
+    }
+  },
+
+  methods: {
+    removeItem(index){
+      this.$store.commit('revomeCart', index)
+    },
+
+  
   }
 }
 </script>
 
 <style>
-  @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 *, *:before, *:after {
   box-sizing: border-box;
 }
-
+.remove-btn{
+    float: right;
+    height: 27px;
+    width: 20px;
+    padding: 0;
+    border: 0px solid;
+    background: #22e2d0;
+}
 .lighter-text {
   color: #ABB0BE;
 }
