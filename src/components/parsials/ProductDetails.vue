@@ -42,7 +42,7 @@ export default {
         fetchProduct(){
             var self = this
             axios.get('http://ebackend-api.test/api/products/'+this.$route.params.id).then(response=>{
-                console.log(response.data.data);
+                //console.log(response.data.data);
                 self.product = response.data.data
             })
         }

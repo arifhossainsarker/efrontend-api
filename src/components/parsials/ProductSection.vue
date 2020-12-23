@@ -57,7 +57,7 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="px-0 col">
-                            <button class="btn btn-outline-primary btn-block">
+                            <button @click="AddToCart(item)" class="btn btn-outline-primary btn-block">
                                 Add To Cart 
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                             </button>
@@ -98,6 +98,10 @@ export default {
                 //console.log(response.data.data);
                 self.$store.commit('setProduct', response.data.data)
             })
+        },
+
+        AddToCart(item){
+            this.$store.commit('addToCart', item)
         }
     }
 }
