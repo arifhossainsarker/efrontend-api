@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
     data(){
         return {
@@ -82,7 +82,7 @@ export default {
     },
 
     mounted(){
-        this.fetchProduct();
+        this.$store.dispatch("allProducts");
     },
 
     computed: {
@@ -92,13 +92,13 @@ export default {
     },
 
     methods: {
-        fetchProduct(){
-            var self = this;
-            axios.get('http://ebackend-api.test/api/products').then(response=>{
-                //console.log(response.data.data);
-                self.$store.commit('setProduct', response.data.data)
-            })
-        },
+        // fetchProduct(){
+        //     var self = this;
+        //     axios.get('http://ebackend-api.test/api/products').then(response=>{
+        //         //console.log(response.data.data);
+        //         self.$store.commit('setProduct', response.data.data)
+        //     })
+        // },
 
         AddToCart(item){
             this.$store.commit('addToCart', item)

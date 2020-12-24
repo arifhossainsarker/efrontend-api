@@ -25,8 +25,8 @@
         <li v-on:click="hoverCart = !hoverCart"><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">{{products.length}}</span></a></li>
       </ul> <!--end navbar-right -->
       <form class="my-2 form-inline my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="my-2 btn btn-outline-success my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" @keyup="Realsearch" v-model="keyword">
+        <button class="my-2 btn btn-outline-success my-sm-0" type="submit" @click.prevent="Realsearch">Search</button>
       </form>
     </div>
   </nav>
@@ -60,6 +60,7 @@
 export default {
   data(){
     return{
+      keyword: '',
       hoverCart: false
     }
   },
@@ -81,6 +82,10 @@ export default {
     removeItem(index){
       this.$store.commit('revomeCart', index)
     },
+
+    Realsearch(){
+      this.$store.dispatch('productSearch', +this.keyword)
+    }
 
   
   }
