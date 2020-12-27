@@ -4,7 +4,7 @@ import App from './App.vue'
 window.$ = window.jQuery = require('jquery')
 
 import router from './router'
-import store from './store/index'
+import store from './store'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'

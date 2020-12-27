@@ -21,6 +21,15 @@
         </li>
         
       </ul>
+      <ul class="mr-auto navbar-nav">
+        <li class="nav-item active">
+          <router-link class="nav-link" to="/login">Login</router-link>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+        
+      </ul>
       <ul class="navbar-right">
         <li v-on:click="hoverCart = !hoverCart"><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">{{products.length}}</span></a></li>
       </ul> <!--end navbar-right -->

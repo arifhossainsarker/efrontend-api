@@ -13,7 +13,7 @@
                 <h6>Total Price: ${{singleProduct.TotalPrice}}</h6>
                 <h6>Rating: {{singleProduct.rating}} Stars</h6>
                 <br>
-                    <button type="button" class="btn btn-info">Add To Cart</button>
+                    <button type="button" class="btn btn-info" @click="AddToCart(singleProduct)">Add To Cart</button>
                 <br>
                 <br>
                 <p>Description: {{singleProduct.description}}</p>
@@ -49,6 +49,10 @@ export default {
         //         self.product = response.data.data
         //     })
         // }
+
+        AddToCart(item){
+            this.$store.commit('addToCart', item)
+        }
     }
 }
 </script>
