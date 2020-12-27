@@ -15,11 +15,11 @@
                         <form>
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" v-model="form.email" name="email">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">PASSWORD</label>
-                                <input type="password" class="form-control" i>
+                                <input type="password" class="form-control" name="password" v-model="form.password">
                             </div>
 
                             <div class="col-lg-12 loginbttm">
@@ -27,7 +27,7 @@
                                     <!-- Error Message -->
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
-                                    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                    <button type="submit" class="btn btn-outline-primary" @click.prevent="loginUser">LOGIN</button>
                                 </div>
                             </div>
                         </form>
@@ -40,8 +40,24 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+    data(){
+        return {
+            form: {
+                email: '',
+                password: ''
+            }
+        }
+    },
 
+    methods: {
+        loginUser(){
+            axios.post('http://ebackend-api.test/api/auth/login', this.form).then( ()=> {
+                this.$router.push({name: "About"})
+            })
+        }
+    }
 }
 </script>
 
