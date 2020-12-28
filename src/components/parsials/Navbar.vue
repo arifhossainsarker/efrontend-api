@@ -26,7 +26,7 @@
           <router-link class="nav-link" to="/login">Login</router-link>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Register</a>
+          <router-link class="nav-link" to="/register">Register</router-link>
         </li>
         
       </ul>
